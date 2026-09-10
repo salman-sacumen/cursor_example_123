@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.example.crud.wiremock.BookApiWireMockMappingsTest" time="0.545" tests="9" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.example.crud.EmployeeCrudIntegrationTest" time="6.987" tests="2" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="21"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
@@ -47,6 +47,7 @@
     <property name="jetty.git.hash" value="5dfc59a691b748796f922208956bd1f2794bcd16"/>
     <property name="java.io.tmpdir" value="/tmp"/>
     <property name="wiremock.org.eclipse.jetty.http.HttpGenerator.STRICT" value="true"/>
+    <property name="com.zaxxer.hikari.pool_number" value="1"/>
     <property name="java.version" value="21.0.12"/>
     <property name="user.dir" value="/home/salman/salman/workspace-securonix/cursor/cursor_example/cursor_example_123"/>
     <property name="os.arch" value="amd64"/>
@@ -64,13 +65,89 @@
     <property name="java.class.version" value="65.0"/>
     <property name="LOGGED_APPLICATION_NAME" value="[cursor-example-123] "/>
   </properties>
-  <testcase name="searchBooks_usesClasspathMapping" classname="com.example.crud.wiremock.BookApiWireMockMappingsTest" time="0.052"/>
-  <testcase name="getAllBooks_usesClasspathMapping" classname="com.example.crud.wiremock.BookApiWireMockMappingsTest" time="0.044"/>
-  <testcase name="deleteBook_usesClasspathMapping" classname="com.example.crud.wiremock.BookApiWireMockMappingsTest" time="0.045"/>
-  <testcase name="getBookById_whenMissing_usesClasspathMapping" classname="com.example.crud.wiremock.BookApiWireMockMappingsTest" time="0.041"/>
-  <testcase name="createBook_usesClasspathMapping" classname="com.example.crud.wiremock.BookApiWireMockMappingsTest" time="0.047"/>
-  <testcase name="updateBook_usesClasspathMapping" classname="com.example.crud.wiremock.BookApiWireMockMappingsTest" time="0.024"/>
-  <testcase name="patchBook_usesClasspathMapping" classname="com.example.crud.wiremock.BookApiWireMockMappingsTest" time="0.032"/>
-  <testcase name="getBookById_usesClasspathMapping" classname="com.example.crud.wiremock.BookApiWireMockMappingsTest" time="0.016"/>
-  <testcase name="getBookByIsbn_usesClasspathMapping" classname="com.example.crud.wiremock.BookApiWireMockMappingsTest" time="0.016"/>
+  <testcase name="createEmployeeWithFullPayloadThenReadUpdateAndDelete" classname="com.example.crud.EmployeeCrudIntegrationTest" time="0.219">
+    <system-out><![CDATA[2026-09-10T16:16:03.363+05:30  INFO 2277471 --- [cursor-example-123] [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.example.crud.EmployeeCrudIntegrationTest]: EmployeeCrudIntegrationTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-09-10T16:16:03.376+05:30  INFO 2277471 --- [cursor-example-123] [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.example.crud.CrudApplication for test class com.example.crud.EmployeeCrudIntegrationTest
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v3.3.4)
+
+2026-09-10T16:16:03.442+05:30  INFO 2277471 --- [cursor-example-123] [           main] c.e.crud.EmployeeCrudIntegrationTest     : Starting EmployeeCrudIntegrationTest using Java 21.0.12 with PID 2277471 (started by salman in /home/salman/salman/workspace-securonix/cursor/cursor_example/cursor_example_123)
+2026-09-10T16:16:03.442+05:30  INFO 2277471 --- [cursor-example-123] [           main] c.e.crud.EmployeeCrudIntegrationTest     : No active profile set, falling back to 1 default profile: "default"
+2026-09-10T16:16:03.829+05:30  INFO 2277471 --- [cursor-example-123] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-09-10T16:16:03.906+05:30  INFO 2277471 --- [cursor-example-123] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 65 ms. Found 2 JPA repository interfaces.
+2026-09-10T16:16:04.945+05:30  INFO 2277471 --- [cursor-example-123] [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-09-10T16:16:05.191+05:30  INFO 2277471 --- [cursor-example-123] [           main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.3.Final
+2026-09-10T16:16:05.339+05:30  INFO 2277471 --- [cursor-example-123] [           main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-09-10T16:16:05.563+05:30  INFO 2277471 --- [cursor-example-123] [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-09-10T16:16:05.650+05:30  INFO 2277471 --- [cursor-example-123] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-09-10T16:16:05.925+05:30  INFO 2277471 --- [cursor-example-123] [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:cruddb user=SA
+2026-09-10T16:16:05.928+05:30  INFO 2277471 --- [cursor-example-123] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-09-10T16:16:05.983+05:30  WARN 2277471 --- [cursor-example-123] [           main] org.hibernate.orm.deprecation            : HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-09-10T16:16:07.501+05:30  INFO 2277471 --- [cursor-example-123] [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+Hibernate: create table books (id bigint generated by default as identity, author varchar(255) not null, genre varchar(255), isbn varchar(255), price float(53) not null, published_year integer check ((published_year<=2100) and (published_year>=1000)), title varchar(255) not null, primary key (id))
+Hibernate: create table employees (id bigint generated by default as identity, department varchar(255) not null, email varchar(255) not null, first_name varchar(255) not null, hire_date date, job_title varchar(255) not null, last_name varchar(255) not null, location varchar(255), phone varchar(255), salary float(53) not null, status enum ('ACTIVE','INACTIVE','ON_LEAVE'), primary key (id))
+Hibernate: alter table if exists books drop constraint if exists UKkibbepcitr0a3cpk3rfr7nihn
+Hibernate: alter table if exists books add constraint UKkibbepcitr0a3cpk3rfr7nihn unique (isbn)
+Hibernate: alter table if exists employees drop constraint if exists UKj9xgmd0ya5jmus09o0b8pqrpb
+Hibernate: alter table if exists employees add constraint UKj9xgmd0ya5jmus09o0b8pqrpb unique (email)
+2026-09-10T16:16:07.578+05:30  INFO 2277471 --- [cursor-example-123] [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-09-10T16:16:07.940+05:30  INFO 2277471 --- [cursor-example-123] [           main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-09-10T16:16:09.669+05:30  WARN 2277471 --- [cursor-example-123] [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-09-10T16:16:09.834+05:30  INFO 2277471 --- [cursor-example-123] [           main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:cruddb'
+2026-09-10T16:16:09.916+05:30  INFO 2277471 --- [cursor-example-123] [           main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2026-09-10T16:16:09.916+05:30  INFO 2277471 --- [cursor-example-123] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-09-10T16:16:09.917+05:30  INFO 2277471 --- [cursor-example-123] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 1 ms
+2026-09-10T16:16:09.928+05:30  INFO 2277471 --- [cursor-example-123] [           main] c.e.crud.EmployeeCrudIntegrationTest     : Started EmployeeCrudIntegrationTest in 6.538 seconds (process running for 23.134)
+Hibernate: select count(*) from employees e1_0
+Hibernate: insert into employees (department,email,first_name,hire_date,job_title,last_name,location,phone,salary,status,id) values (?,?,?,?,?,?,?,?,?,?,default)
+Hibernate: insert into employees (department,email,first_name,hire_date,job_title,last_name,location,phone,salary,status,id) values (?,?,?,?,?,?,?,?,?,?,default)
+Hibernate: insert into employees (department,email,first_name,hire_date,job_title,last_name,location,phone,salary,status,id) values (?,?,?,?,?,?,?,?,?,?,default)
+Hibernate: insert into employees (department,email,first_name,hire_date,job_title,last_name,location,phone,salary,status,id) values (?,?,?,?,?,?,?,?,?,?,default)
+Hibernate: insert into employees (department,email,first_name,hire_date,job_title,last_name,location,phone,salary,status,id) values (?,?,?,?,?,?,?,?,?,?,default)
+Hibernate: insert into employees (department,email,first_name,hire_date,job_title,last_name,location,phone,salary,status,id) values (?,?,?,?,?,?,?,?,?,?,default)
+Hibernate: insert into employees (department,email,first_name,hire_date,job_title,last_name,location,phone,salary,status,id) values (?,?,?,?,?,?,?,?,?,?,default)
+Hibernate: select e1_0.id,e1_0.department,e1_0.email,e1_0.first_name,e1_0.hire_date,e1_0.job_title,e1_0.last_name,e1_0.location,e1_0.phone,e1_0.salary,e1_0.status from employees e1_0
+Hibernate: delete from employees where id=?
+Hibernate: delete from employees where id=?
+Hibernate: delete from employees where id=?
+Hibernate: delete from employees where id=?
+Hibernate: delete from employees where id=?
+Hibernate: delete from employees where id=?
+Hibernate: delete from employees where id=?
+Hibernate: select e1_0.id from employees e1_0 where upper(e1_0.email)=upper(?) fetch first ? rows only
+Hibernate: insert into employees (department,email,first_name,hire_date,job_title,last_name,location,phone,salary,status,id) values (?,?,?,?,?,?,?,?,?,?,default)
+Hibernate: select e1_0.id,e1_0.department,e1_0.email,e1_0.first_name,e1_0.hire_date,e1_0.job_title,e1_0.last_name,e1_0.location,e1_0.phone,e1_0.salary,e1_0.status from employees e1_0
+Hibernate: select e1_0.id,e1_0.department,e1_0.email,e1_0.first_name,e1_0.hire_date,e1_0.job_title,e1_0.last_name,e1_0.location,e1_0.phone,e1_0.salary,e1_0.status from employees e1_0 where (? is null or lower(e1_0.first_name) like lower(('%'||?||'%')) escape '' or lower(e1_0.last_name) like lower(('%'||?||'%')) escape '') and (? is null or lower(e1_0.department)=lower(?)) and (? is null or lower(e1_0.job_title) like lower(('%'||?||'%')) escape '') and (? is null or e1_0.status=?)
+Hibernate: select e1_0.id,e1_0.department,e1_0.email,e1_0.first_name,e1_0.hire_date,e1_0.job_title,e1_0.last_name,e1_0.location,e1_0.phone,e1_0.salary,e1_0.status from employees e1_0 where upper(e1_0.email)=upper(?)
+Hibernate: select e1_0.id,e1_0.department,e1_0.email,e1_0.first_name,e1_0.hire_date,e1_0.job_title,e1_0.last_name,e1_0.location,e1_0.phone,e1_0.salary,e1_0.status from employees e1_0 where e1_0.id=?
+Hibernate: select e1_0.id from employees e1_0 where upper(e1_0.email)=upper(?) and e1_0.id<>? fetch first ? rows only
+Hibernate: update employees set department=?,email=?,first_name=?,hire_date=?,job_title=?,last_name=?,location=?,phone=?,salary=?,status=? where id=?
+Hibernate: select e1_0.id from employees e1_0 where upper(e1_0.email)=upper(?) fetch first ? rows only
+Hibernate: select count(*) from employees e1_0 where e1_0.id=?
+Hibernate: select e1_0.id,e1_0.department,e1_0.email,e1_0.first_name,e1_0.hire_date,e1_0.job_title,e1_0.last_name,e1_0.location,e1_0.phone,e1_0.salary,e1_0.status from employees e1_0 where e1_0.id=?
+Hibernate: delete from employees where id=?
+Hibernate: select e1_0.id,e1_0.department,e1_0.email,e1_0.first_name,e1_0.hire_date,e1_0.job_title,e1_0.last_name,e1_0.location,e1_0.phone,e1_0.salary,e1_0.status from employees e1_0 where e1_0.id=?
+]]></system-out>
+  </testcase>
+  <testcase name="sampleEmployeesAreLoadedWhenTableIsEmpty" classname="com.example.crud.EmployeeCrudIntegrationTest" time="0.03">
+    <system-out><![CDATA[Hibernate: select e1_0.id,e1_0.department,e1_0.email,e1_0.first_name,e1_0.hire_date,e1_0.job_title,e1_0.last_name,e1_0.location,e1_0.phone,e1_0.salary,e1_0.status from employees e1_0
+Hibernate: select count(*) from employees e1_0
+Hibernate: insert into employees (department,email,first_name,hire_date,job_title,last_name,location,phone,salary,status,id) values (?,?,?,?,?,?,?,?,?,?,default)
+Hibernate: insert into employees (department,email,first_name,hire_date,job_title,last_name,location,phone,salary,status,id) values (?,?,?,?,?,?,?,?,?,?,default)
+Hibernate: insert into employees (department,email,first_name,hire_date,job_title,last_name,location,phone,salary,status,id) values (?,?,?,?,?,?,?,?,?,?,default)
+Hibernate: insert into employees (department,email,first_name,hire_date,job_title,last_name,location,phone,salary,status,id) values (?,?,?,?,?,?,?,?,?,?,default)
+Hibernate: insert into employees (department,email,first_name,hire_date,job_title,last_name,location,phone,salary,status,id) values (?,?,?,?,?,?,?,?,?,?,default)
+Hibernate: insert into employees (department,email,first_name,hire_date,job_title,last_name,location,phone,salary,status,id) values (?,?,?,?,?,?,?,?,?,?,default)
+Hibernate: insert into employees (department,email,first_name,hire_date,job_title,last_name,location,phone,salary,status,id) values (?,?,?,?,?,?,?,?,?,?,default)
+Hibernate: select e1_0.id,e1_0.department,e1_0.email,e1_0.first_name,e1_0.hire_date,e1_0.job_title,e1_0.last_name,e1_0.location,e1_0.phone,e1_0.salary,e1_0.status from employees e1_0
+Hibernate: select e1_0.id,e1_0.department,e1_0.email,e1_0.first_name,e1_0.hire_date,e1_0.job_title,e1_0.last_name,e1_0.location,e1_0.phone,e1_0.salary,e1_0.status from employees e1_0 where (? is null or lower(e1_0.first_name) like lower(('%'||?||'%')) escape '' or lower(e1_0.last_name) like lower(('%'||?||'%')) escape '') and (? is null or lower(e1_0.department)=lower(?)) and (? is null or lower(e1_0.job_title) like lower(('%'||?||'%')) escape '') and (? is null or e1_0.status=?)
+]]></system-out>
+  </testcase>
 </testsuite>

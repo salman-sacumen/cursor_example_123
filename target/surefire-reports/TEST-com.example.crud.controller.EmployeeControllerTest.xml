@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.example.crud.wiremock.BookApiWireMockMappingsTest" time="0.545" tests="9" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.example.crud.controller.EmployeeControllerTest" time="1.767" tests="9" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="21"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
@@ -42,11 +42,8 @@
     <property name="file.encoding" value="UTF-8"/>
     <property name="java.vm.name" value="OpenJDK 64-Bit Server VM"/>
     <property name="localRepository" value="/home/salman/.m2/repository"/>
-    <property name="javax.xml.xpath.XPathFactory:http://java.sun.com/jaxp/xpath/dom" value="com.sun.org.apache.xpath.internal.jaxp.XPathFactoryImpl"/>
     <property name="java.vendor.url.bug" value="https://bugs.launchpad.net/ubuntu/+source/openjdk-21"/>
-    <property name="jetty.git.hash" value="5dfc59a691b748796f922208956bd1f2794bcd16"/>
     <property name="java.io.tmpdir" value="/tmp"/>
-    <property name="wiremock.org.eclipse.jetty.http.HttpGenerator.STRICT" value="true"/>
     <property name="java.version" value="21.0.12"/>
     <property name="user.dir" value="/home/salman/salman/workspace-securonix/cursor/cursor_example/cursor_example_123"/>
     <property name="os.arch" value="amd64"/>
@@ -60,17 +57,37 @@
     <property name="java.vendor" value="Ubuntu"/>
     <property name="java.vm.version" value="21.0.12+8-1-24.04-Ubuntu"/>
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
-    <property name="javax.xml.transform.TransformerFactory" value="com.sun.org.apache.xalan.internal.xsltc.trax.TransformerFactoryImpl"/>
     <property name="java.class.version" value="65.0"/>
     <property name="LOGGED_APPLICATION_NAME" value="[cursor-example-123] "/>
   </properties>
-  <testcase name="searchBooks_usesClasspathMapping" classname="com.example.crud.wiremock.BookApiWireMockMappingsTest" time="0.052"/>
-  <testcase name="getAllBooks_usesClasspathMapping" classname="com.example.crud.wiremock.BookApiWireMockMappingsTest" time="0.044"/>
-  <testcase name="deleteBook_usesClasspathMapping" classname="com.example.crud.wiremock.BookApiWireMockMappingsTest" time="0.045"/>
-  <testcase name="getBookById_whenMissing_usesClasspathMapping" classname="com.example.crud.wiremock.BookApiWireMockMappingsTest" time="0.041"/>
-  <testcase name="createBook_usesClasspathMapping" classname="com.example.crud.wiremock.BookApiWireMockMappingsTest" time="0.047"/>
-  <testcase name="updateBook_usesClasspathMapping" classname="com.example.crud.wiremock.BookApiWireMockMappingsTest" time="0.024"/>
-  <testcase name="patchBook_usesClasspathMapping" classname="com.example.crud.wiremock.BookApiWireMockMappingsTest" time="0.032"/>
-  <testcase name="getBookById_usesClasspathMapping" classname="com.example.crud.wiremock.BookApiWireMockMappingsTest" time="0.016"/>
-  <testcase name="getBookByIsbn_usesClasspathMapping" classname="com.example.crud.wiremock.BookApiWireMockMappingsTest" time="0.016"/>
+  <testcase name="createEmployee_withInvalidBody_returnsBadRequest" classname="com.example.crud.controller.EmployeeControllerTest" time="0.06">
+    <system-out><![CDATA[2026-09-10T16:15:56.377+05:30  INFO 2277471 --- [cursor-example-123] [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.example.crud.controller.EmployeeControllerTest]: EmployeeControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-09-10T16:15:56.450+05:30  INFO 2277471 --- [cursor-example-123] [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.example.crud.CrudApplication for test class com.example.crud.controller.EmployeeControllerTest
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v3.3.4)
+
+2026-09-10T16:15:56.542+05:30  INFO 2277471 --- [cursor-example-123] [           main] c.e.c.controller.EmployeeControllerTest  : Starting EmployeeControllerTest using Java 21.0.12 with PID 2277471 (started by salman in /home/salman/salman/workspace-securonix/cursor/cursor_example/cursor_example_123)
+2026-09-10T16:15:56.543+05:30  INFO 2277471 --- [cursor-example-123] [           main] c.e.c.controller.EmployeeControllerTest  : No active profile set, falling back to 1 default profile: "default"
+2026-09-10T16:15:57.760+05:30  INFO 2277471 --- [cursor-example-123] [           main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2026-09-10T16:15:57.760+05:30  INFO 2277471 --- [cursor-example-123] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-09-10T16:15:57.761+05:30  INFO 2277471 --- [cursor-example-123] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 1 ms
+2026-09-10T16:15:57.774+05:30  INFO 2277471 --- [cursor-example-123] [           main] c.e.c.controller.EmployeeControllerTest  : Started EmployeeControllerTest in 1.317 seconds (process running for 10.98)
+2026-09-10T16:15:57.833+05:30  WARN 2277471 --- [cursor-example-123] [           main] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<com.example.crud.model.Employee> com.example.crud.controller.EmployeeController.createEmployee(com.example.crud.model.Employee) with 4 errors: [Field error in object 'employee' on field 'email': rejected value [not-an-email]; codes [Email.employee.email,Email.email,Email.java.lang.String,Email]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [employee.email,email]; arguments []; default message [email],[Ljakarta.validation.constraints.Pattern$Flag;@7f41d979,.*]; default message [Email must be valid]] [Field error in object 'employee' on field 'lastName': rejected value []; codes [NotBlank.employee.lastName,NotBlank.lastName,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [employee.lastName,lastName]; arguments []; default message [lastName]]; default message [Last name is required]] [Field error in object 'employee' on field 'salary': rejected value [-10.0]; codes [Positive.employee.salary,Positive.salary,Positive.java.lang.Double,Positive]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [employee.salary,salary]; arguments []; default message [salary]]; default message [Salary must be positive]] [Field error in object 'employee' on field 'firstName': rejected value []; codes [NotBlank.employee.firstName,NotBlank.firstName,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [employee.firstName,firstName]; arguments []; default message [firstName]]; default message [First name is required]] ]
+]]></system-out>
+  </testcase>
+  <testcase name="createEmployee_returnsCreated" classname="com.example.crud.controller.EmployeeControllerTest" time="0.076"/>
+  <testcase name="getEmployees_returnsOk" classname="com.example.crud.controller.EmployeeControllerTest" time="0.014"/>
+  <testcase name="deleteEmployee_whenExists_returnsNoContent" classname="com.example.crud.controller.EmployeeControllerTest" time="0.009"/>
+  <testcase name="getEmployeeByEmail_whenExists_returnsOk" classname="com.example.crud.controller.EmployeeControllerTest" time="0.088"/>
+  <testcase name="createEmployee_withDuplicateEmail_returnsConflict" classname="com.example.crud.controller.EmployeeControllerTest" time="0.017"/>
+  <testcase name="getEmployeeById_whenExists_returnsOk" classname="com.example.crud.controller.EmployeeControllerTest" time="0.024"/>
+  <testcase name="updateEmployee_whenExists_returnsOk" classname="com.example.crud.controller.EmployeeControllerTest" time="0.016"/>
+  <testcase name="getEmployees_withFilters_returnsMatches" classname="com.example.crud.controller.EmployeeControllerTest" time="0.011"/>
 </testsuite>

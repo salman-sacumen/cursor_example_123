@@ -1,8 +1,15 @@
 /home/salman/salman/workspace-securonix/cursor/cursor_example/cursor_example_123/src/main/java/com/example/crud/CrudApplication.java
+/home/salman/salman/workspace-securonix/cursor/cursor_example/cursor_example_123/src/main/java/com/example/crud/config/EmployeeDataLoader.java
 /home/salman/salman/workspace-securonix/cursor/cursor_example/cursor_example_123/src/main/java/com/example/crud/controller/BookController.java
+/home/salman/salman/workspace-securonix/cursor/cursor_example/cursor_example_123/src/main/java/com/example/crud/controller/EmployeeController.java
 /home/salman/salman/workspace-securonix/cursor/cursor_example/cursor_example_123/src/main/java/com/example/crud/dto/BookPatchRequest.java
+/home/salman/salman/workspace-securonix/cursor/cursor_example/cursor_example_123/src/main/java/com/example/crud/exception/DuplicateEmailException.java
 /home/salman/salman/workspace-securonix/cursor/cursor_example/cursor_example_123/src/main/java/com/example/crud/exception/DuplicateIsbnException.java
 /home/salman/salman/workspace-securonix/cursor/cursor_example/cursor_example_123/src/main/java/com/example/crud/exception/RestExceptionHandler.java
 /home/salman/salman/workspace-securonix/cursor/cursor_example/cursor_example_123/src/main/java/com/example/crud/model/Book.java
+/home/salman/salman/workspace-securonix/cursor/cursor_example/cursor_example_123/src/main/java/com/example/crud/model/Employee.java
+/home/salman/salman/workspace-securonix/cursor/cursor_example/cursor_example_123/src/main/java/com/example/crud/model/EmployeeStatus.java
 /home/salman/salman/workspace-securonix/cursor/cursor_example/cursor_example_123/src/main/java/com/example/crud/repository/BookRepository.java
+/home/salman/salman/workspace-securonix/cursor/cursor_example/cursor_example_123/src/main/java/com/example/crud/repository/EmployeeRepository.java
 /home/salman/salman/workspace-securonix/cursor/cursor_example/cursor_example_123/src/main/java/com/example/crud/service/BookService.java
+/home/salman/salman/workspace-securonix/cursor/cursor_example/cursor_example_123/src/main/java/com/example/crud/service/EmployeeService.java

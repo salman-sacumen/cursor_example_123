@@ -1,5 +1,8 @@
 com/example/crud/controller/BookControllerTest.class
+com/example/crud/controller/EmployeeControllerTest.class
 com/example/crud/BookCrudIntegrationTest.class
+com/example/crud/service/EmployeeServiceTest.class
 com/example/crud/service/BookServiceTest.class
+com/example/crud/EmployeeCrudIntegrationTest.class
 com/example/crud/wiremock/BookApiWireMockMappingsTest.class
 com/example/crud/wiremock/BookApiWireMockTest.class
