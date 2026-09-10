@@ -1,0 +1,4 @@
+Analytics event 05
+Source: Composer
+Endpoint: /analytics/ai-code/commits
+Purpose: generate a tracked AI commit record
