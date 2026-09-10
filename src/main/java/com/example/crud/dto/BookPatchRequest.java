@@ -1,36 +1,21 @@
-package com.example.crud.model;
+package com.example.crud.dto;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.Size;
 
-@Entity
-@Table(name = "books")
-public class Book {
+public class BookPatchRequest {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @NotBlank(message = "Title is required")
+    @Size(min = 1, message = "Title must not be blank")
     private String title;
 
-    @NotBlank(message = "Author is required")
+    @Size(min = 1, message = "Author must not be blank")
     private String author;
 
-    @NotNull(message = "Price is required")
     @Positive(message = "Price must be positive")
     private Double price;
 
-    @Column(unique = true)
     private String isbn;
 
     private String genre;
@@ -38,32 +23,6 @@ public class Book {
     @Min(value = 1000, message = "Published year must be 1000 or later")
     @Max(value = 2100, message = "Published year must be 2100 or earlier")
     private Integer publishedYear;
-
-    public Book() {
-    }
-
-    public Book(String title, String author, Double price) {
-        this.title = title;
-        this.author = author;
-        this.price = price;
-    }
-
-    public Book(String title, String author, Double price, String isbn, String genre, Integer publishedYear) {
-        this.title = title;
-        this.author = author;
-        this.price = price;
-        this.isbn = isbn;
-        this.genre = genre;
-        this.publishedYear = publishedYear;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getTitle() {
         return title;

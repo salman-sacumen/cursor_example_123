@@ -1,5 +1,7 @@
 package com.example.crud.controller;
 
+import com.example.crud.dto.BookPatchRequest;
+import com.example.crud.exception.DuplicateIsbnException;
 import com.example.crud.model.Book;
 import com.example.crud.service.BookService;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -15,9 +17,11 @@ import java.util.Optional;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.ArgumentMatchers.isNull;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.patch;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -39,7 +43,7 @@ class BookControllerTest {
     void getAllBooks_returnsOk() throws Exception {
         Book book = new Book("Clean Code", "Robert Martin", 39.99);
         book.setId(1L);
-        when(bookService.findAll()).thenReturn(List.of(book));
+        when(bookService.search(isNull(), isNull(), isNull(), isNull(), isNull())).thenReturn(List.of(book));
 
         mockMvc.perform(get("/api/books"))
                 .andExpect(status().isOk())
@@ -47,6 +51,43 @@ class BookControllerTest {
                 .andExpect(jsonPath("$[0].title").value("Clean Code"))
                 .andExpect(jsonPath("$[0].author").value("Robert Martin"))
                 .andExpect(jsonPath("$[0].price").value(39.99));
+    }
+
+    @Test
+    void getBooks_withFilters_returnsMatches() throws Exception {
+        Book book = new Book("Clean Code", "Robert Martin", 39.99, "9780132350884", "Programming", 2008);
+        book.setId(1L);
+        when(bookService.search(eq("Clean"), eq("Martin"), eq("Programming"), eq(30.0), eq(50.0)))
+                .thenReturn(List.of(book));
+
+        mockMvc.perform(get("/api/books")
+                        .param("title", "Clean")
+                        .param("author", "Martin")
+                        .param("genre", "Programming")
+                        .param("minPrice", "30.0")
+                        .param("maxPrice", "50.0"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$[0].isbn").value("9780132350884"))
+                .andExpect(jsonPath("$[0].genre").value("Programming"));
+    }
+
+    @Test
+    void getBookByIsbn_whenExists_returnsOk() throws Exception {
+        Book book = new Book("Clean Code", "Robert Martin", 39.99, "9780132350884", "Programming", 2008);
+        book.setId(1L);
+        when(bookService.findByIsbn("9780132350884")).thenReturn(Optional.of(book));
+
+        mockMvc.perform(get("/api/books/isbn/9780132350884"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.title").value("Clean Code"));
+    }
+
+    @Test
+    void getBookByIsbn_whenMissing_returnsNotFound() throws Exception {
+        when(bookService.findByIsbn("000")).thenReturn(Optional.empty());
+
+        mockMvc.perform(get("/api/books/isbn/000"))
+                .andExpect(status().isNotFound());
     }
 
     @Test
@@ -84,6 +125,18 @@ class BookControllerTest {
     }
 
     @Test
+    void createBook_withDuplicateIsbn_returnsConflict() throws Exception {
+        Book request = new Book("Clean Code", "Robert Martin", 39.99, "9780132350884", "Programming", 2008);
+        when(bookService.create(any(Book.class))).thenThrow(new DuplicateIsbnException("9780132350884"));
+
+        mockMvc.perform(post("/api/books")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(request)))
+                .andExpect(status().isConflict())
+                .andExpect(jsonPath("$.message").value("A book with ISBN 9780132350884 already exists"));
+    }
+
+    @Test
     void createBook_withInvalidBody_returnsBadRequest() throws Exception {
         Book invalid = new Book("", "", -5.0);
 
@@ -116,6 +169,29 @@ class BookControllerTest {
         mockMvc.perform(put("/api/books/99")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(request)))
+                .andExpect(status().isNotFound());
+    }
+
+    @Test
+    void patchBook_whenExists_returnsOk() throws Exception {
+        Book updated = new Book("Clean Code", "Robert Martin", 29.99);
+        updated.setId(1L);
+        when(bookService.patch(eq(1L), any(BookPatchRequest.class))).thenReturn(Optional.of(updated));
+
+        mockMvc.perform(patch("/api/books/1")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("{\"price\":29.99}"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.price").value(29.99));
+    }
+
+    @Test
+    void patchBook_whenMissing_returnsNotFound() throws Exception {
+        when(bookService.patch(eq(99L), any(BookPatchRequest.class))).thenReturn(Optional.empty());
+
+        mockMvc.perform(patch("/api/books/99")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("{\"genre\":\"Fiction\"}"))
                 .andExpect(status().isNotFound());
     }
 

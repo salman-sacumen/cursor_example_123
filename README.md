@@ -19,11 +19,15 @@ App starts at `http://localhost:8080`. H2 console: `http://localhost:8080/h2-con
 
 | Method | Endpoint | Description |
 |--------|----------|-------------|
-| GET | `/api/books` | List all books |
+| GET | `/api/books` | List books. Optional filters: `title`, `author`, `genre`, `minPrice`, `maxPrice` |
 | GET | `/api/books/{id}` | Get book by id |
-| POST | `/api/books` | Create a book |
-| PUT | `/api/books/{id}` | Update a book |
+| GET | `/api/books/isbn/{isbn}` | Get book by ISBN |
+| POST | `/api/books` | Create a book (409 if ISBN already exists) |
+| PUT | `/api/books/{id}` | Replace a book |
+| PATCH | `/api/books/{id}` | Partially update a book |
 | DELETE | `/api/books/{id}` | Delete a book |
+
+Optional book fields: `isbn`, `genre`, `publishedYear`.
 
 ### Example
 
@@ -46,4 +50,15 @@ curl -X PUT http://localhost:8080/api/books/1 \
 
 # Delete
 curl -X DELETE http://localhost:8080/api/books/1
+
+# Search
+curl "http://localhost:8080/api/books?author=Martin&genre=Programming"
+
+# Look up by ISBN
+curl http://localhost:8080/api/books/isbn/9780132350884
+
+# Partial update
+curl -X PATCH http://localhost:8080/api/books/1 \
+  -H "Content-Type: application/json" \
+  -d '{"price":29.99,"genre":"Software"}'
 ```

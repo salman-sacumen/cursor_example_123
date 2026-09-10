@@ -18,6 +18,7 @@ import static com.github.tomakehurst.wiremock.client.WireMock.equalTo;
 import static com.github.tomakehurst.wiremock.client.WireMock.equalToJson;
 import static com.github.tomakehurst.wiremock.client.WireMock.get;
 import static com.github.tomakehurst.wiremock.client.WireMock.getRequestedFor;
+import static com.github.tomakehurst.wiremock.client.WireMock.patch;
 import static com.github.tomakehurst.wiremock.client.WireMock.post;
 import static com.github.tomakehurst.wiremock.client.WireMock.postRequestedFor;
 import static com.github.tomakehurst.wiremock.client.WireMock.put;
@@ -141,6 +142,58 @@ class BookApiWireMockTest {
 
         assertThat(response.statusCode()).isEqualTo(404);
         verify(putRequestedFor(urlEqualTo("/api/books/99")));
+    }
+
+    @Test
+    void searchBooks_byAuthor_returnsMatches() throws Exception {
+        stubFor(get(urlEqualTo("/api/books?author=Martin"))
+                .willReturn(jsonResponse(200, "[" + BOOK_JSON + "]")));
+
+        HttpResponse<String> response = send(getRequest("/api/books?author=Martin"));
+
+        assertThat(response.statusCode()).isEqualTo(200);
+        assertThat(response.body()).contains("Robert Martin");
+        verify(getRequestedFor(urlEqualTo("/api/books?author=Martin")));
+    }
+
+    @Test
+    void getBookByIsbn_whenExists_returnsOk() throws Exception {
+        stubFor(get(urlEqualTo("/api/books/isbn/9780132350884"))
+                .willReturn(jsonResponse(200, BOOK_JSON)));
+
+        HttpResponse<String> response = send(getRequest("/api/books/isbn/9780132350884"));
+
+        assertThat(response.statusCode()).isEqualTo(200);
+        assertThat(response.body()).contains("Clean Code");
+        verify(getRequestedFor(urlEqualTo("/api/books/isbn/9780132350884")));
+    }
+
+    @Test
+    void patchBook_whenExists_returnsOk() throws Exception {
+        String patchBody = """
+                {"price":29.99}""";
+        stubFor(patch(urlEqualTo("/api/books/1"))
+                .withRequestBody(equalToJson(patchBody))
+                .willReturn(jsonResponse(200, """
+                        {"id":1,"title":"Clean Code","author":"Robert Martin","price":29.99}""")));
+
+        HttpResponse<String> response = send(jsonRequest("PATCH", "/api/books/1", patchBody));
+
+        assertThat(response.statusCode()).isEqualTo(200);
+        assertThat(response.body()).contains("29.99");
+    }
+
+    @Test
+    void createBook_withDuplicateIsbn_returnsConflict() throws Exception {
+        stubFor(post(urlEqualTo("/api/books"))
+                .withRequestBody(equalToJson(CREATE_BODY))
+                .willReturn(jsonResponse(409, """
+                        {"message":"A book with ISBN 9780132350884 already exists"}""")));
+
+        HttpResponse<String> response = send(jsonRequest("POST", "/api/books", CREATE_BODY));
+
+        assertThat(response.statusCode()).isEqualTo(409);
+        assertThat(response.body()).contains("already exists");
     }
 
     @Test

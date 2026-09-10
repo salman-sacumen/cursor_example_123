@@ -1,0 +1,21 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/api/books/isbn/9780132350884"
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "id": 1,
+      "title": "Clean Code",
+      "author": "Robert Martin",
+      "price": 39.99,
+      "isbn": "9780132350884",
+      "genre": "Programming",
+      "publishedYear": 2008
+    }
+  }
+}

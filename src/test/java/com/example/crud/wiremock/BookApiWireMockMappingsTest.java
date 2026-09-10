@@ -12,6 +12,7 @@ import java.net.http.HttpResponse;
 
 import static com.github.tomakehurst.wiremock.client.WireMock.deleteRequestedFor;
 import static com.github.tomakehurst.wiremock.client.WireMock.getRequestedFor;
+import static com.github.tomakehurst.wiremock.client.WireMock.patchRequestedFor;
 import static com.github.tomakehurst.wiremock.client.WireMock.postRequestedFor;
 import static com.github.tomakehurst.wiremock.client.WireMock.putRequestedFor;
 import static com.github.tomakehurst.wiremock.client.WireMock.urlEqualTo;
@@ -82,6 +83,34 @@ class BookApiWireMockMappingsTest {
         assertThat(response.statusCode()).isEqualTo(200);
         assertThat(response.body()).contains("Robert C. Martin");
         wireMock.verify(putRequestedFor(urlEqualTo("/api/books/1")));
+    }
+
+    @Test
+    void searchBooks_usesClasspathMapping() throws Exception {
+        HttpResponse<String> response = send(getRequest("/api/books?author=Martin"));
+
+        assertThat(response.statusCode()).isEqualTo(200);
+        assertThat(response.body()).contains("Robert Martin");
+        wireMock.verify(getRequestedFor(urlEqualTo("/api/books?author=Martin")));
+    }
+
+    @Test
+    void getBookByIsbn_usesClasspathMapping() throws Exception {
+        HttpResponse<String> response = send(getRequest("/api/books/isbn/9780132350884"));
+
+        assertThat(response.statusCode()).isEqualTo(200);
+        assertThat(response.body()).contains("9780132350884");
+        wireMock.verify(getRequestedFor(urlEqualTo("/api/books/isbn/9780132350884")));
+    }
+
+    @Test
+    void patchBook_usesClasspathMapping() throws Exception {
+        HttpResponse<String> response = send(jsonRequest("PATCH", "/api/books/1", """
+                {"price":29.99}"""));
+
+        assertThat(response.statusCode()).isEqualTo(200);
+        assertThat(response.body()).contains("29.99");
+        wireMock.verify(patchRequestedFor(urlEqualTo("/api/books/1")));
     }
 
     @Test
