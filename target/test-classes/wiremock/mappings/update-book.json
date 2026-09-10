@@ -1,0 +1,32 @@
+{
+  "request": {
+    "method": "PUT",
+    "url": "/api/books/1",
+    "headers": {
+      "Content-Type": {
+        "equalTo": "application/json"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "equalToJson": {
+          "title": "Clean Code",
+          "author": "Robert C. Martin",
+          "price": 42.00
+        }
+      }
+    ]
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "id": 1,
+      "title": "Clean Code",
+      "author": "Robert C. Martin",
+      "price": 42.00
+    }
+  }
+}

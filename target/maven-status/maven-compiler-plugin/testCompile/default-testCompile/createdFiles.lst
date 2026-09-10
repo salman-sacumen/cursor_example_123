@@ -1,0 +1,5 @@
+com/example/crud/controller/BookControllerTest.class
+com/example/crud/BookCrudIntegrationTest.class
+com/example/crud/service/BookServiceTest.class
+com/example/crud/wiremock/BookApiWireMockMappingsTest.class
+com/example/crud/wiremock/BookApiWireMockTest.class

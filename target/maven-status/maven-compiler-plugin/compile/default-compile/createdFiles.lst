@@ -1,0 +1,8 @@
+com/example/crud/repository/BookRepository.class
+com/example/crud/model/Book.class
+com/example/crud/exception/DuplicateIsbnException.class
+com/example/crud/service/BookService.class
+com/example/crud/CrudApplication.class
+com/example/crud/exception/RestExceptionHandler.class
+com/example/crud/controller/BookController.class
+com/example/crud/dto/BookPatchRequest.class

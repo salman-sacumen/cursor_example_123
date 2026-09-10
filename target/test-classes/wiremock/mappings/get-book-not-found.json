@@ -1,0 +1,9 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/api/books/99"
+  },
+  "response": {
+    "status": 404
+  }
+}
